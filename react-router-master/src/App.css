@@ -25,6 +25,12 @@ body {
   margin-left: 0px;
   border-top: 1px solid #3f3f3f;
 }
+#top-bar {
+  display: inline;
+  padding: 5px 0 0 500px;
+  grid-area:top-bar;
+  height: 100%;
+}
 #messages-list {
   padding: 5px 0 0 5px;
 }
