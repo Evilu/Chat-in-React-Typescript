@@ -1,6 +1,7 @@
 import * as React from 'react';
 import "./App.css";
 import ChatTree from './ChatTree'
+import ChatInput from "./ChatInput";
 
 
 
@@ -66,7 +67,7 @@ class App extends React.Component<{},any> {
                 <section id="main">
                     <section id="top-bar">Top bar</section>
                     <section id="messages-list">Messages list</section>
-                    <section id="new-message">New message</section>
+                    <section id="new-message"><ChatInput /></section>
                 </section>
             </div>
         );
