@@ -3,6 +3,7 @@ import "./App.css";
 import ChatTree from './ChatTree'
 import ChatInput from "./ChatInput";
 import MessagesList from "./Messageslist";
+// import StateStoreContainer from "./containers/StateStoreCon";
 
  interface IAppstate {
     message:string
@@ -96,12 +97,14 @@ class App extends React.Component<{},IAppstate> {
     render() {
         return (
             <div id="container">
-                <aside id="sidebar"><ChatTree items={this.state.items} /></aside>
-                <section id="main">
-                    <section id="top-bar">Top bar</section>
-                    <section id="messages-list"><MessagesList list={this.state.list}  /></section>
-                    <section id="new-message"><ChatInput message={this.state.message} textChangeHandler={this.textChangeHandler} submitHandler={this.submitHandler} /></section>
-                </section>
+                {/*<StateStoreContainer>*/}
+                    <aside id="sidebar"><ChatTree items={this.state.items} /></aside>
+                    <section id="main">
+                        <section id="top-bar">Top bar</section>
+                        <section id="messages-list"><MessagesList list={this.state.list}  /></section>
+                        <section id="new-message"><ChatInput message={this.state.message} textChangeHandler={this.textChangeHandler} submitHandler={this.submitHandler} /></section>
+                    </section>
+                {/*</StateStoreContainer>*/}
             </div>
         );
     }
