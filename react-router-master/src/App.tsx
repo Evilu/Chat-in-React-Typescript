@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import "./App.css";
 import ChatTree from './ChatTree'
 
@@ -15,12 +14,32 @@ class App extends React.Component<{},any> {
                     "name": "Friends",
                     "items": [
                         {
+                            "type": "user",
+                            "name": "Ugi"
+                        },
+                        {
                             "type": "group",
                             "name": "Best Friends",
                             "items": [
                                 {
                                     "type": "user",
-                                    "name": "Tommy"
+                                    "name": "CrackDealer3000"
+                                },
+                                {
+                                    "type": "user",
+                                    "name": "Don Cornilio"
+                                },
+                                {
+                                    "type": "user",
+                                    "name": "That Guy playing Spiderman"
+                                },
+                                {
+                                    "type": "user",
+                                    "name": "Zus and Tus"
+                                },
+                                {
+                                    "type": "user",
+                                    "name": "Jabba the Hut"
                                 }
                             ]
                         }
