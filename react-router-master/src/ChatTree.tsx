@@ -1,13 +1,6 @@
 import * as React from 'react';
+import {Iitem} from './App'
 
-interface Iitem {
-    name:string,
-    items:Iitem[],
-    item:any,
-    className:string
-
-
-}
 interface Iprops {
     items:Iitem[]
 }
@@ -211,9 +204,7 @@ class ChatTree extends React.Component<Iprops> {
 
 
 
-     clear() {
-        this.clearInner()
-    }
+
 
      clearInner() {
         if (this.ref.children.length){
