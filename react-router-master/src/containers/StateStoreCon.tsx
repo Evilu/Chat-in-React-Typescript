@@ -31,7 +31,7 @@ class StateStoreContainer extends React.Component<any, IState> {
         })
         return (
             <div>
-                {/*<div> {list}</div>*/}
+                <div> {list}</div>
 
         {this.props.children}
         </div>

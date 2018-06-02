@@ -6,7 +6,7 @@ interface IStateStore {
 }
 
 class StateStore implements IStateStore {
-    state: {} = {users:[{name:'gal!',password:'1234'},{name:'shoko!',password:'1234'},{name:'moshe!',password:'1234'}]};
+    state: {} = {users:[{name:'gal',password:'1234'},{name:'shoko',password:'1234'},{name:'moshe',password:'1234'}]};
 
     set(key: string, val: any) {
         this.state[key] = val;
