@@ -1,7 +1,9 @@
 import * as React from 'react';
 import {IUser} from './Entities';
 import Field from './Field';
-import {alert} from "./ModalComp";
+import {alert} from "./App";
+import './LoginModal.css';
+import {Link} from 'react-router-dom';
 
 interface ILoginModalProps {
     onSubmit: (u: IUser) => void,
@@ -36,20 +38,7 @@ export default class LoginModal extends React.Component<ILoginModalProps, ILogin
     updateField = (fieldName: string, value: string) => {
 
         this.setState(prevState => {
-            //1
-            //prevState.user[fieldName] = value;
-
-            // const newState = Object.assign({},
-            //     prevState,
-            //     {user:prevState.user});
-            //
-            // return newState;
-
             return {
-                // 1
-                //user: prevState.user
-                // 2
-                prop: 'sdf',
                 user: {
                     ...this.state.user,
                     [fieldName]: value
@@ -66,15 +55,21 @@ export default class LoginModal extends React.Component<ILoginModalProps, ILogin
 
     render() {
         return (
-            <form>
-                <Field name={'username'} type={'text'} onChange={this.updateField}/>
-                <Field name={'password'} type={'password'} onChange={this.updateField}/>
-
-                <button type="button" onClick={this.submitHandler}>Login</button>
-                <p style={{color:this.colors[this.props.loginStatus]}}>{this.messages[this.props.loginStatus]}</p>
-
-
-            </form>
+            <div className='login-wrapper'>
+                <div className='login-form-wrapper'>
+                    <form className='login-form'>
+                        <div>
+                            <Link to='/'><button className='login-X'>X</button></Link>
+                        </div>
+                        <div className='login-fields'>
+                            <Field name={'username'} type={'text'} onChange={this.updateField}/>
+                            <Field name={'password'} type={'password'} onChange={this.updateField}/>
+                            <button disabled={!this.state.user.username || !this.state.user.password} className='login-btn' type="button" onClick={this.submitHandler}>Login</button>
+                            <p style={{color:this.colors[this.props.loginStatus]}}>{this.messages[this.props.loginStatus]}</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
         );
     }
 }

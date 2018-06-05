@@ -1,15 +1,15 @@
 import * as React from 'react';
-
+import ChatInput from "./ChatInput";
+import "./App.css";
 interface IMessagesListState {
-
-
 }
+
 interface IMessagesListProps {
-    list:string[]
-
+    list:any,
+    message:any,
+    submitHandler(event:any):void,
+    textChangeHandler(event:any):void
 }
-
-
 
 class MessagesList extends React.Component<IMessagesListProps,IMessagesListState> {
     constructor(props:IMessagesListProps) {
@@ -17,22 +17,26 @@ class MessagesList extends React.Component<IMessagesListProps,IMessagesListState
         this.state = { }
     }
 
-
-
     render() {
-         const newList = this.props.list.map((message,index)=>{
-             return <li key={index}>{message}  </li>
-         })
-        return (
-            <div>
-           <ul>
-               {newList}
-           </ul>
-
-
-            </div>
-        );
-    }
+        let list;
+        if(this.props.list){
+             list = this.props.list.map((message:any,index:number)=>{
+                return <li key={index}>{message.content}  </li>
+            });
+        }
+            return (
+                <div>
+                    <div className="list">
+                        <ul>
+                            {list}
+                        </ul>
+                    </div>
+                    <div className="new-message">
+                        <ChatInput message={this.props.message} textChangeHandler={this.props.textChangeHandler} submitHandler={this.props.submitHandler} />
+                    </div>
+                </div>
+            );
+        }
 }
 
 

@@ -2,7 +2,8 @@ import * as React from 'react';
 import {Iitem} from './App'
 
 interface Iprops {
-    items:Iitem[]
+    items:Iitem[],
+    getIDfromElement(element:any):void,
 }
 
 class ChatTree extends React.Component<Iprops> {
@@ -22,20 +23,20 @@ class ChatTree extends React.Component<Iprops> {
      load(items:Iitem[]) {
 
 
-        this.clearInner();
+         this.clearInner();
 
-        for (const item of items) {
-            const li = this.createLiElementWithName(item.name, 'root-name');
-            if (item.items) {
-                this.createChildren(li, item);
-            }
-            this.ref.appendChild(li);
-        }
+         for (const item of items) {
+             const li = this.createLiElementWithName(item, 'root-name');
+             if (item.items) {
+                 this.createChildren(li, item);
+             }
+             this.ref.appendChild(li);
+         }
         this.startListening(this.ref);
     }
 
 
-     createChildren(li:HTMLLIElement, item:Iitem) {
+    createChildren(li:HTMLLIElement, item:Iitem) {
         const ul = document.createElement('ul');
         if (item.items) {
             for (const i of item.items) {
@@ -46,7 +47,7 @@ class ChatTree extends React.Component<Iprops> {
                 else {
                     className = 'items-name';
                 }
-                const li = this.createLiElementWithName(i.name, className);
+                const li = this.createLiElementWithName(i, className);
                 ul.appendChild(li);
                 ul.style.display='none'
                 if (i.items) {
@@ -59,9 +60,9 @@ class ChatTree extends React.Component<Iprops> {
     }
 
 
-     createLiElementWithName(name:string, className:string) {
+    createLiElementWithName(item:{name:string, id:string, type:string}, className:string) {
         const li = document.createElement('li');
-        const a = addNameToElement(name, className);
+        const a = addNameToElement(item.name, className);
         a.setAttribute('tabIndex','1');
         li.appendChild(a);
 
@@ -69,6 +70,8 @@ class ChatTree extends React.Component<Iprops> {
             const a = document.createElement('a');
             a.innerText = name;
             a.classList.add(className);
+            a.setAttribute("id", item.id);
+            a.setAttribute("type",item.type)
             return a;
         }
 
@@ -97,11 +100,13 @@ class ChatTree extends React.Component<Iprops> {
     }
 
 
+
      addClickListener(ref:any){
          ref.addEventListener("click", (event:any)=>{
             event.target.focus();
             event.stopPropagation();
-        })
+            this.props.getIDfromElement(event.target);
+         })
     }
      toggleOnDoubleClick(ref:any){
          ref.addEventListener("dblclick", (event:any)=>{
@@ -149,7 +154,7 @@ class ChatTree extends React.Component<Iprops> {
                 }
             }
             return result;
-        }
+        };
         const caughtLi = liArray();
         function findIndex (){
             let result;
@@ -183,8 +188,8 @@ class ChatTree extends React.Component<Iprops> {
 
 
 
-     addKeyUpListener(ref:any) {
-         ref.addEventListener('keyup',(event:any)=> {
+    addKeyUpListener(ref:any) {
+        ref.addEventListener('keyup',(event:any)=> {
             if (event.key === 'ArrowRight'){
                 this.displayChildren(event.target);
 
@@ -195,7 +200,7 @@ class ChatTree extends React.Component<Iprops> {
             if (event.key === 'Enter'){
                 this.enterLevel(event.target);
             }
-            if(event.key === "ArrowDown" || event.key === "ArrowUp") {debugger
+            if(event.key === "ArrowDown" || event.key === "ArrowUp") {
                 this.dealWithLi(event.target, event.key);
 
             }
@@ -206,7 +211,7 @@ class ChatTree extends React.Component<Iprops> {
 
 
 
-     clearInner() {
+    clearInner() {
         if (this.ref.children.length){
             while (this.ref.children.length){
                 this.ref.children[0].remove();
