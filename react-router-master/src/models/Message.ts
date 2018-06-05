@@ -16,6 +16,6 @@ export class Message implements IMessage{
     }
 }
 
-const m = new Message("hi", "d", "gal");
+const m = new Message("hi", "d", "Zus and Tus");
 m;
 

@@ -40,8 +40,4 @@ class StateStoreContainer extends React.Component<any, IState> {
     }
 }
 
-// function Connector(): any {
-//     return StateStoreContainer;
-// }
-
 export default StateStoreContainer;

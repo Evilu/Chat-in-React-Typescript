@@ -21,7 +21,7 @@ class ChatInput extends React.Component<IChatInputProps,{}> {
             <div>
                 <form className="chat-input" onSubmit={this.props.submitHandler}>
 
-                    <input type="text" onChange={this.props.textChangeHandler} value={this.props.message} placeholder="Well type something will ya?!..."/>
+                    <input className='typeBox' type="text" onChange={this.props.textChangeHandler} value={this.props.message} placeholder="Well type something will ya?!..."/>
                     <button className="input-button" onClick={this.props.submitHandler}>Send</button>
                 </form>
             </div>

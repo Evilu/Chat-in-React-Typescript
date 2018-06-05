@@ -3,11 +3,12 @@
     vertical-align: middle;
 }
 
-.login-btn, .login-X{
+ .login-X{
     color: #098b17;
     background-color: darkslategray;
     border: 2px solid greenyellow;
     border-radius: 30px;
+
 }
 .login-btn {
     background: #ff0000;
@@ -73,15 +74,14 @@
     background-image: -ms-linear-gradient(top, #ff0000, #ba1826);
     background-image: -o-linear-gradient(top, #ff0000, #ba1826);
     background-image: linear-gradient(to bottom, #ff0000, #ba1826);
-    -webkit-border-radius: 60;
-    -moz-border-radius: 60;
-    border-radius: 60px;
-    text-shadow: 0px 0px 7px #000000;
-    font-family: Georgia;
-    color: #0a010a;
-    font-size: 27px;
-    padding: 16px 18px 14px 22px;
-    text-decoration: none;
+    -webkit-border-radius: 47;
+    -moz-border-radius: 47;
+    border-radius: 47px;
+    font-family: "Berlin Sans FB";
+    color: black;
+    font-size: 20px;
+    padding: 3px 8px 3px 9px;
+    text-decoration: none
 }
 .login-X:hover {
     background: #f50808;

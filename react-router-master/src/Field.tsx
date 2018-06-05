@@ -17,6 +17,6 @@ const Field:React.StatelessComponent<IFieldProps> = (props) => {
         <input type={props.type || 'text'} name={props.name} onChange={extractValue}/>
     </p>
     )
-}
+};
 
 export {Field as default};

@@ -17,6 +17,7 @@ export enum alert{
     locked
 }
 
+
  interface IAppstate {
     message:string
     items:Iitem[],
@@ -26,7 +27,10 @@ export enum alert{
      counter: number,
      approveUser:boolean,
      selected?:{id:string, type:string}
+
+
 }
+
 
 export interface Iitem {
 
@@ -35,7 +39,7 @@ export interface Iitem {
     items?:Iitem[],
     id:string
 
-    // className:string,
+
 }
 
  class App extends React.Component<{},IAppstate> {
@@ -55,7 +59,7 @@ export interface Iitem {
                         {
                             "type": "user",
                             "id":"3",
-                            "name": "Ugi"
+                            "name": "James"
                         },
                         {
                             "type": "group",
@@ -65,27 +69,27 @@ export interface Iitem {
                                 {
                                     "type": "user",
                                     "id":"4",
-                                    "name": "CrackDealer3000"
+                                    "name": "Ugi"
                                 },
                                 {
                                     "type": "user",
                                     "id":"5",
-                                    "name": "Don Cornilio"
+                                    "name": "Pikachu"
                                 },
                                 {
                                     "type": "user",
                                     "id":"6",
-                                    "name": "That Guy playing Spiderman"
+                                    "name": "Ash"
                                 },
                                 {
                                     "type": "user",
                                     "id":"7",
-                                    "name": "Zus and Tus"
+                                    "name": "Trainer"
                                 },
                                 {
                                     "type": "user",
                                     "id":"8",
-                                    "name": "Jabba the Hut"
+                                    "name": "Jessie"
                                 }
                             ]
                         }
@@ -104,10 +108,10 @@ export interface Iitem {
             ]
             ,
             message:''
-            // users:[],
-            // selectedGroup:null
+
         }
     }
+
 
     auth = (user: IUser): boolean => {
         console.log(user);
@@ -148,15 +152,12 @@ export interface Iitem {
     };
 
     public submitHandler=(event:any)=> {
-        // Stop the Component from refreshing the page on every submit and driving you mad bashing your head on the floor..
+
         event.preventDefault();
-        if (this.state.selected!.type==='group'){
+        if (this.state.selected && this.state.selected!.type==='group'){
             StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
                    const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
                     this.setState({ message: '' , list:newList})
-        }
-        else{
-
         }
 
     };
@@ -166,10 +167,11 @@ export interface Iitem {
     };
 
 
+
     public  appRender=()=>(
         <div className='main'>
             <div className="main-left">
-                <div className="sidebar"><ChatTree getIDfromElement={this.getIDfromElement} items={this.state.items} /></div>
+                <span className="sidebar"><ChatTree getIDfromElement={this.getIDfromElement} items={this.state.items} /></span>
             </div>
             <div className="main-right">
                 <div className="messages-list"><MessagesList textChangeHandler={this.textChangeHandler} submitHandler={this.submitHandler} list={this.state.list} message={this.state.message} /></div>
@@ -177,31 +179,29 @@ export interface Iitem {
         </div>
     );
 
-
     public loginRender =()=>(this.state.approveUser?<Redirect to={{pathname:'/chat'}}/>:<LoginModal loginStatus={this.state.alert} onSubmit={this.onLoginSubmitHandler}/>);
 
     render() {
         return (
-
             <div className="App">
                 <Route path='/login' render={this.loginRender}/>
                 <nav className="nav">
                     <div className="nav-left">
+                        <div className='gbText'>
+                        GAME BOY
+                        </div>
                     <Link to='/login'><button className='loginBtn'>login</button></Link>
-                        <div hidden={!this.state.loggedInUser}>
+                        <div  hidden={!this.state.loggedInUser}>
                             {this.state.loggedInUser?this.state.loggedInUser!.username:""}
                         </div>
                     </div>
                 </nav>
-                {/*<StateStoreContainer>*/}
                 <div className="chat">
                     <Switch>
                         <Route path='/' render={this.appRender}/>
                         <Route path='/chat' render={this.appRender}/>
                     </Switch>
                 </div>
-
-                {/*</StateStoreContainer>*/}
 
             </div>
 

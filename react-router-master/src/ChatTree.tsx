@@ -49,7 +49,7 @@ class ChatTree extends React.Component<Iprops> {
                 }
                 const li = this.createLiElementWithName(i, className);
                 ul.appendChild(li);
-                ul.style.display='none'
+                ul.style.display='none';
                 if (i.items) {
                     this.createChildren(li, i);
                 }
