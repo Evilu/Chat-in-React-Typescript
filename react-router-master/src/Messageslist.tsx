@@ -21,7 +21,7 @@ class MessagesList extends React.Component<IMessagesListProps,IMessagesListState
         let list;
         if(this.props.list){
              list = this.props.list.map((message:any,index:number)=>{
-                return <li key={index}>{message.content}  </li>
+                return <li key={index}>{message.content} {message.date} </li>
             });
         }
             return (

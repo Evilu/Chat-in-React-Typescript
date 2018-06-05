@@ -151,7 +151,7 @@ export interface Iitem {
         // Stop the Component from refreshing the page on every submit and driving you mad bashing your head on the floor..
         event.preventDefault();
         if (this.state.selected!.type==='group'){
-            StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toDateString(), this.state.loggedInUser!.username));
+            StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
                    const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
                     this.setState({ message: '' , list:newList})
         }
@@ -188,6 +188,9 @@ export interface Iitem {
                 <nav className="nav">
                     <div className="nav-left">
                     <Link to='/login'><button className='loginBtn'>login</button></Link>
+                        <div hidden={!this.state.loggedInUser}>
+                            {this.state.loggedInUser?this.state.loggedInUser!.username:""}
+                        </div>
                     </div>
                 </nav>
                 {/*<StateStoreContainer>*/}
