@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ChatInput from "./ChatInput";
-import "./App.css";
+import "../App.css";
 interface IMessagesListState {
 }
 

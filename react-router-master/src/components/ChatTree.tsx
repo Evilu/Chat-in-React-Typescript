@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Iitem} from './App'
+import {Iitem} from '../App'
 
 interface Iprops {
     items:Iitem[],
@@ -21,7 +21,6 @@ class ChatTree extends React.Component<Iprops> {
     }
 
      load(items:Iitem[]) {
-
 
          this.clearInner();
 
@@ -77,7 +76,6 @@ class ChatTree extends React.Component<Iprops> {
 
         return li;
     }
-
 
      displayNextSibling(ref:any){
         if(ref){

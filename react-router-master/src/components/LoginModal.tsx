@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {IUser} from './Entities';
+import {IUser} from '../Entities';
 import Field from './Field';
-import {alert} from "./App";
+import {alert} from "../App";
 import './LoginModal.css';
 import {Link} from 'react-router-dom';
 

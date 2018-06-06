@@ -1,10 +1,10 @@
 import * as React from 'react';
 import "./App.css";
-import ChatTree from './ChatTree'
-import MessagesList from "./Messageslist";
+import ChatTree from './components/ChatTree'
+import MessagesList from "./components/Messageslist";
 import {IUser} from "./Entities";
 import {Link, Route} from "react-router-dom";
-import LoginModal from "./LoginModal";
+import LoginModal from "./components/LoginModal";
 import {Redirect, Switch} from "react-router";
 import StateStore from "./models/StateStore";
 import {Message} from "./models/Message";
@@ -154,19 +154,19 @@ export interface Iitem {
     public submitHandler=(event:any)=> {
 
         event.preventDefault();
-        if (this.state.loggedInUser && this.state.selected && this.state.selected!.type==='group'){
+           if (this.state.loggedInUser && this.state.selected && this.state.selected!.type==='group'){
             console.log(this.state.loggedInUser);
-            StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
+                StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
                    const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
-                    this.setState({ message: '' , list:newList})
+                   this.setState({ message: '' , list:newList})
         }
 
     };
 
+
     public textChangeHandler=(event:any) => {
         this.setState({ message: event.target.value });
     };
-
 
 
     public  appRender=()=>(
@@ -180,7 +180,9 @@ export interface Iitem {
         </div>
     );
 
+
     public loginRender =()=>(this.state.approveUser?<Redirect to={{pathname:'/chat'}}/>:<LoginModal loginStatus={this.state.alert} onSubmit={this.onLoginSubmitHandler}/>);
+
 
     render() {
         return (
@@ -203,7 +205,6 @@ export interface Iitem {
                         <Route path='/chat' render={this.appRender}/>
                     </Switch>
                 </div>
-
             </div>
 
         );
