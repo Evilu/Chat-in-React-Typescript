@@ -154,7 +154,8 @@ export interface Iitem {
     public submitHandler=(event:any)=> {
 
         event.preventDefault();
-        if (this.state.selected && this.state.selected!.type==='group'){
+        if (this.state.loggedInUser && this.state.selected && this.state.selected!.type==='group'){
+            console.log(this.state.loggedInUser);
             StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
                    const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
                     this.setState({ message: '' , list:newList})
